@@ -1,0 +1,761 @@
+/* =========================================================
+   ajustes.css
+   Estilos exclusivos de ajustes.php.
+   Depende de nobese.css (variables) y de panel.css (.panel-page,
+   .panel-titulo, .reg-aviso), así que se carga junto con los dos:
+   $extra_css = ['css/feed.css', 'css/panel.css', 'css/ajustes.css'];
+   ========================================================= */
+
+.ajustes-layout {
+	max-width: 1000px;
+	display: grid;
+	grid-template-columns: 220px 1fr;
+	gap: 28px;
+	align-items: start;
+}
+
+/* ---------------------------------------------------------
+   MENÚ LATERAL
+   --------------------------------------------------------- */
+
+.ajustes-nav {
+	position: sticky;
+	top: 90px;
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 14px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+}
+
+.ajustes-nav a {
+	padding: 10px 14px;
+	border-radius: 8px;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.88rem;
+	color: var(--navy-800);
+	transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ajustes-nav a:hover {
+	background: #eaf1fc;
+	color: var(--blue-accent);
+}
+
+/* ---------------------------------------------------------
+   SECCIONES
+   --------------------------------------------------------- */
+
+.ajustes-contenido {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	min-width: 0;
+}
+
+.ajustes-seccion {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 14px;
+	padding: 24px 26px;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+	scroll-margin-top: 90px;
+}
+
+.ajustes-seccion h2 {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: 1.1rem;
+	color: var(--navy-900);
+	margin-bottom: 6px;
+}
+
+.ajustes-seccion-desc {
+	color: #6b7280;
+	font-size: 0.88rem;
+	margin-bottom: 18px;
+}
+
+/* Fila "texto a la izquierda, acción a la derecha" — se usa para
+   Editar datos, Cambiar correo/contraseña, Cerrar sesión, Eliminar
+   cuenta, Verificación de cuenta, y cada sesión activa. */
+.ajustes-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+	padding: 16px 0;
+	border-top: 1px solid #eef0f5;
+}
+
+.ajustes-seccion h2 + .ajustes-item,
+.ajustes-seccion-desc + .ajustes-item {
+	border-top: none;
+}
+
+.ajustes-item-texto h3 {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.95rem;
+	color: var(--navy-900);
+	margin-bottom: 4px;
+}
+
+.ajustes-item-texto p {
+	color: #6b7280;
+	font-size: 0.85rem;
+	max-width: 46ch;
+}
+
+.ajustes-item-texto .ajustes-input {
+	margin-top: 10px;
+	max-width: 320px;
+}
+
+.ajustes-item--peligro .ajustes-item-texto h3 {
+	color: #a3271c;
+}
+
+.ajustes-item--link {
+	color: var(--navy-800);
+}
+
+.ajustes-item--link span {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.92rem;
+}
+
+.ajustes-item--link svg {
+	width: 18px;
+	height: 18px;
+	color: #9aa3b5;
+}
+
+.ajustes-item--link:hover span,
+.ajustes-item--link:hover svg {
+	color: var(--blue-accent);
+}
+
+/* ---------------------------------------------------------
+   BOTONES
+   --------------------------------------------------------- */
+
+.ajustes-btn {
+	flex-shrink: 0;
+	padding: 9px 18px;
+	border-radius: 7px;
+	border: 1px solid #d7dce6;
+	background: var(--white);
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.85rem;
+	color: var(--navy-800);
+	cursor: pointer;
+	transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.ajustes-btn:hover {
+	border-color: var(--blue-accent);
+	color: var(--blue-accent);
+}
+
+.ajustes-btn--chico {
+	padding: 6px 12px;
+	font-size: 0.78rem;
+}
+
+.ajustes-btn--primario {
+	background: var(--navy-900);
+	border-color: var(--navy-900);
+	color: var(--white);
+}
+
+.ajustes-btn--primario:hover {
+	background: var(--orange-accent);
+	border-color: var(--orange-accent);
+	color: var(--white);
+}
+
+.ajustes-btn--peligro {
+	border-color: #f5c6c1;
+	color: #a3271c;
+}
+
+.ajustes-btn--peligro:hover {
+	background: #a3271c;
+	border-color: #a3271c;
+	color: var(--white);
+}
+
+.ajustes-guardar-wrap {
+	margin-top: 18px;
+	padding-top: 18px;
+	border-top: 1px solid #eef0f5;
+	display: flex;
+	justify-content: flex-end;
+}
+
+/* ---------------------------------------------------------
+   CAMPOS DE FORMULARIO
+   --------------------------------------------------------- */
+
+.ajustes-campo {
+	margin-bottom: 18px;
+}
+
+.ajustes-campo label,
+.ajustes-campo-label {
+	display: block;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.78rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--navy-800);
+	margin-bottom: 8px;
+}
+
+.ajustes-input {
+	width: 100%;
+	max-width: 420px;
+	padding: 10px 14px;
+	border: 1px solid #d7dce6;
+	border-radius: 7px;
+	font-family: var(--font-body);
+	font-size: 0.9rem;
+	color: var(--navy-900);
+	background: var(--white);
+}
+
+.ajustes-input:focus {
+	outline: none;
+	border-color: var(--blue-accent);
+	box-shadow: 0 0 0 3px rgba(47, 127, 224, 0.15);
+}
+
+select.ajustes-input[multiple] {
+	max-width: 320px;
+}
+
+.ajustes-checkbox-grupo {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.ajustes-checkbox-grupo label {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 0.88rem;
+	color: var(--navy-900);
+	text-transform: none;
+	font-family: var(--font-body);
+	font-weight: 400;
+}
+
+.ajustes-rango-salarial {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	max-width: 420px;
+}
+
+.ajustes-rango-salarial input {
+	max-width: 160px;
+}
+
+.ajustes-rango-salarial span {
+	color: #9aa3b5;
+}
+
+/* ---------------------------------------------------------
+   TOGGLES (switches)
+   --------------------------------------------------------- */
+
+.ajustes-toggle-fila {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 0;
+	border-top: 1px solid #eef0f5;
+	font-size: 0.9rem;
+	color: var(--navy-900);
+}
+
+.ajustes-toggle-fila:first-of-type {
+	border-top: none;
+}
+
+.ajustes-switch {
+	position: relative;
+	display: inline-block;
+	width: 42px;
+	height: 24px;
+	flex-shrink: 0;
+}
+
+.ajustes-switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.ajustes-switch-slider {
+	position: absolute;
+	inset: 0;
+	background: #d7dce6;
+	border-radius: 999px;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.ajustes-switch-slider::before {
+	content: "";
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	left: 3px;
+	top: 3px;
+	background: var(--white);
+	border-radius: 50%;
+	transition: transform 0.2s ease;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.ajustes-switch input:checked + .ajustes-switch-slider {
+	background: var(--blue-accent);
+}
+
+.ajustes-switch input:checked + .ajustes-switch-slider::before {
+	transform: translateX(18px);
+}
+
+.ajustes-switch input:focus-visible + .ajustes-switch-slider {
+	box-shadow: 0 0 0 3px rgba(47, 127, 224, 0.25);
+}
+
+/* ---------------------------------------------------------
+   SESIONES ACTIVAS
+   --------------------------------------------------------- */
+
+.ajustes-subseccion {
+	margin: 6px 0 18px;
+}
+
+.ajustes-subseccion h3 {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.92rem;
+	color: var(--navy-900);
+	margin-bottom: 10px;
+}
+
+.ajustes-sesiones {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.ajustes-sesion-fila {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 12px 14px;
+	background: #f7f8fb;
+	border-radius: 8px;
+}
+
+.ajustes-sesion-dispositivo {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.88rem;
+	color: var(--navy-900);
+}
+
+.ajustes-sesion-detalle {
+	font-size: 0.8rem;
+	color: #6b7280;
+}
+
+.ajustes-sesion-actual {
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: #16a37a;
+	flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 800px) {
+	.ajustes-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.ajustes-nav {
+		position: static;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.ajustes-item {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.ajustes-item .ajustes-btn {
+		align-self: flex-start;
+	}
+}
+/* ---------------------------------------------------------
+   AYUDA (preguntas frecuentes, centro de ayuda, contacto,
+   reportar un problema)
+   --------------------------------------------------------- */
+
+.ayuda-intro {
+	color: var(--navy-800);
+	opacity: 0.75;
+	margin: -8px 0 16px;
+	font-size: 0.92rem;
+}
+
+.ayuda-card {
+	background: var(--white);
+	border-radius: 16px;
+	padding: 8px 20px;
+	margin-bottom: 16px;
+}
+
+.ayuda-faq-item {
+	padding: 14px 0;
+	border-bottom: 1px solid #eef0f5;
+}
+
+.ayuda-faq-item:last-child {
+	border-bottom: none;
+}
+
+.ayuda-faq-item summary {
+	cursor: pointer;
+	font-weight: 600;
+	color: var(--navy-900);
+	list-style: none;
+}
+
+.ayuda-faq-item summary::-webkit-details-marker {
+	display: none;
+}
+
+.ayuda-faq-item summary::after {
+	content: "+";
+	float: right;
+	font-weight: 700;
+	color: var(--blue-accent);
+}
+
+.ayuda-faq-item[open] summary::after {
+	content: "–";
+}
+
+.ayuda-faq-item p {
+	margin-top: 10px;
+	color: var(--navy-800);
+	opacity: 0.85;
+	line-height: 1.5;
+}
+
+.ayuda-temas {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 16px;
+	padding: 20px;
+}
+
+.ayuda-tema h3 {
+	font-family: var(--font-heading);
+	font-size: 1rem;
+	color: var(--navy-900);
+	margin-bottom: 6px;
+}
+
+.ayuda-tema p {
+	color: var(--navy-800);
+	opacity: 0.8;
+	font-size: 0.9rem;
+	line-height: 1.5;
+}
+
+.ayuda-form {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ayuda-textarea {
+	resize: vertical;
+	font-family: var(--font-body);
+}
+
+.ayuda-pie {
+	text-align: center;
+	color: var(--navy-800);
+	opacity: 0.75;
+	font-size: 0.9rem;
+}
+
+.ayuda-pie a {
+	color: var(--blue-accent);
+	font-weight: 600;
+}
+
+@media (max-width: 700px) {
+	.ayuda-temas {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ---------------------------------------------------------
+   CV DEL TÉCNICO
+   --------------------------------------------------------- */
+
+.ajustes-cv-actual {
+	font-size: 0.85rem;
+	color: var(--navy-800);
+	margin-bottom: 6px;
+}
+
+.ajustes-cv-actual a {
+	color: var(--blue-accent);
+	font-weight: 600;
+}
+
+.ajustes-cv-ayuda {
+	display: block;
+	font-size: 0.75rem;
+	color: #9aa3b5;
+	margin-top: 4px;
+}
+
+/* =========================================================
+   Especialidades y certificados (solo técnicos)
+   ========================================================= */
+.esp-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 8px;
+}
+.esp-chip {
+	position: relative;
+	cursor: pointer;
+}
+.esp-chip input {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+.esp-chip span {
+	display: inline-block;
+	padding: 7px 13px;
+	border: 1px solid #d7dce6;
+	border-radius: 999px;
+	background: var(--white);
+	font-size: 0.84rem;
+	color: var(--navy-800);
+	transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.esp-chip:hover span {
+	border-color: var(--blue-accent);
+}
+.esp-chip input:checked + span {
+	background: var(--blue-accent);
+	border-color: var(--blue-accent);
+	color: var(--white);
+}
+.esp-chip input:focus-visible + span {
+	outline: 2px solid var(--navy-700);
+	outline-offset: 2px;
+}
+
+.ajustes-subseccion {
+	margin-top: 26px;
+	padding-top: 20px;
+	border-top: 1px solid #eef0f5;
+}
+.ajustes-subseccion h3 {
+	margin: 0 0 12px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 1rem;
+	color: var(--navy-900);
+}
+
+.cert-lista {
+	list-style: none;
+	margin: 0 0 18px;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.cert-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px;
+	border: 1px solid #e6e9f0;
+	border-radius: 12px;
+}
+.cert-mini {
+	flex: 0 0 54px;
+	width: 54px;
+	height: 54px;
+	display: grid;
+	place-items: center;
+	border: 1px solid #e6e9f0;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #f3f5f9;
+	font-family: var(--font-heading);
+	font-size: 0.75rem;
+	font-weight: 700;
+	color: #6b7280;
+}
+.cert-mini img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.cert-info {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.cert-info strong {
+	font-size: 0.9rem;
+	color: var(--navy-900);
+}
+.cert-info small {
+	font-size: 0.78rem;
+	color: #6b7280;
+}
+.cert-vacio {
+	padding: 14px;
+	text-align: center;
+	font-size: 0.88rem;
+	color: #9aa3b5;
+}
+.cert-subir-fila {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 14px;
+}
+@media (max-width: 560px) {
+	.cert-subir-fila {
+		grid-template-columns: 1fr;
+	}
+	.cert-item {
+		flex-wrap: wrap;
+	}
+}
+
+/* =========================================================
+   Estado de revisión de cada certificado (Configuración)
+   ========================================================= */
+.cert-estado {
+	align-self: flex-start;
+	margin-top: 4px;
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-family: var(--font-heading);
+	font-size: 0.72rem;
+	font-weight: 700;
+}
+.cert-estado--pendiente { background: #fff7e0; color: #8a6100; }
+.cert-estado--aprobado  { background: #e6f6ec; color: #1c6b3a; }
+.cert-estado--rechazado { background: #fdeceb; color: #a3271c; }
+
+.cert-motivo {
+	margin: 6px 0 0;
+	padding: 8px 10px;
+	border-radius: 8px;
+	background: #fdeceb;
+	color: #8f2219;
+	font-size: 0.8rem;
+	line-height: 1.4;
+}
+.cert-historial {
+	margin-top: 4px;
+	color: #6b7280;
+	font-style: italic;
+}
+.cert-reintento-aviso {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 10px;
+	margin: 0 0 14px;
+	padding: 10px 12px;
+	border-radius: 10px;
+	background: #eaf2fc;
+	color: #1f4f96;
+	font-size: 0.85rem;
+}
+.cert-reintento-aviso[hidden] {
+	display: none;
+}
+.cert-reintento-aviso button {
+	margin-left: auto;
+	padding: 3px 10px;
+	border: 1px solid #9fb6dd;
+	border-radius: 999px;
+	background: #fff;
+	font-size: 0.78rem;
+	color: #1f4f96;
+	cursor: pointer;
+}
+
+
+/* =========================================================
+   CELULAR: pestañas de Configuración en UNA sola fila deslizable
+   (antes se partían en varios renglones, uno debajo del otro).
+   ========================================================= */
+@media (max-width: 800px) {
+	.ajustes-nav {
+		flex-wrap: nowrap;
+		overflow-x: auto;
+		gap: 6px;
+		padding: 8px;
+		scrollbar-width: none;
+		-webkit-overflow-scrolling: touch;
+		scroll-snap-type: x proximity;
+	}
+
+	.ajustes-nav::-webkit-scrollbar {
+		display: none;
+	}
+
+	.ajustes-nav a {
+		flex: 0 0 auto;
+		white-space: nowrap;
+		padding: 8px 14px;
+		border-radius: 999px;
+		background: #f2f4f8;
+		scroll-snap-align: start;
+	}
+}

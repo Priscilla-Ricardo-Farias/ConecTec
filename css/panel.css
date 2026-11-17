@@ -1,0 +1,1579 @@
+/* =========================================================
+   panel.css
+   Estilos del header con ícono de casa (includes/header_hogar.php)
+   y de las pantallas "de detalle": perfil.php, calendario.php,
+   mensajes.php y notificaciones.php.
+
+   Depende de las variables de nobese.css y de las clases .app-icons
+   / .app-icon-btn ya definidas en feed.css, así que las páginas que
+   usan este archivo tienen que cargar los dos:
+   $extra_css = ['css/feed.css', 'css/panel.css'];
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HEADER CON ÍCONO DE CASA
+   --------------------------------------------------------- */
+
+.header-inner-hogar {
+	gap: 20px;
+}
+
+.home-btn {
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--white);
+	transition: background 0.2s ease, color 0.2s ease;
+	flex-shrink: 0;
+}
+
+.home-btn:hover {
+	background: rgba(255, 255, 255, 0.1);
+	color: var(--orange-accent);
+}
+
+.home-btn svg {
+	width: 22px;
+	height: 22px;
+}
+
+.app-icons-hogar {
+	margin-left: auto;
+}
+
+/* ---------------------------------------------------------
+   BASE COMÚN DE LAS PANTALLAS DE PANEL
+   --------------------------------------------------------- */
+
+.panel-page {
+	background: #f2f4f8;
+	padding: 32px 24px 90px;
+	display: flex;
+	justify-content: center;
+}
+
+.panel-page-inner {
+	width: 100%;
+	max-width: 900px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.panel-titulo {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: 1.4rem;
+	color: var(--navy-900);
+	text-decoration: underline;
+	text-underline-offset: 6px;
+	text-decoration-color: #d7dce6;
+}
+
+/* ---------------------------------------------------------
+   PERFIL DE TÉCNICO
+   --------------------------------------------------------- */
+
+.perfil-card {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 16px;
+	padding: 26px 28px;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 20px;
+}
+
+.perfil-encabezado {
+	grid-column: 1 / -1;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.perfil-identidad {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.perfil-avatar {
+	width: 76px;
+	height: 76px;
+	border-radius: 50%;
+	overflow: hidden;
+	border: 3px solid #e6e9f0;
+	flex-shrink: 0;
+}
+
+.perfil-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.perfil-nombre {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: 1.15rem;
+	color: var(--navy-900);
+	margin-bottom: 6px;
+}
+
+.perfil-estrellas {
+	display: flex;
+	gap: 3px;
+	color: #d7dce6;
+}
+
+.perfil-estrellas svg {
+	width: 18px;
+	height: 18px;
+}
+
+.perfil-estrellas .estrella-activa {
+	color: #f5b400;
+}
+
+/* Calificación del técnico: estrellas llenas en proporción al promedio + número (perfil.php) */
+.perfil-calificacion {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.perfil-estrella {
+	position: relative;
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	line-height: 0;
+}
+
+/* Parte dorada de la estrella: se recorta al ancho que corresponda
+   (ej: promedio 3,8 -> la cuarta estrella se llena hasta el 80%). */
+.perfil-estrella-relleno {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	overflow: hidden;
+	color: #f5b400;
+}
+
+.perfil-estrella-relleno svg {
+	width: 18px;
+	height: 18px;
+}
+
+.perfil-puntaje {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: 1rem;
+	color: var(--navy-900);
+}
+
+.perfil-cantidad {
+	font-size: 0.8rem;
+	color: #6b7280;
+}
+
+.perfil-tipo {
+	text-align: center;
+}
+
+.perfil-tipo-label {
+	display: block;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.72rem;
+	letter-spacing: 0.08em;
+	color: #6b7280;
+	margin-bottom: 6px;
+}
+
+.perfil-especialidad-box {
+	min-width: 180px;
+	padding: 9px 16px;
+	border: 1px solid #d7dce6;
+	border-radius: 7px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	color: var(--navy-800);
+	text-align: center;
+}
+
+.perfil-bio {
+	color: #5b6478;
+	font-size: 0.94rem;
+	max-width: 46ch;
+}
+
+.perfil-adjuntos {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin-top: 10px;
+}
+
+.perfil-cv {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 7px 14px;
+	border-radius: 7px;
+	border: 1px solid var(--blue-accent);
+	color: var(--blue-accent);
+	font-family: var(--font-heading);
+	font-size: 0.85rem;
+	font-weight: 600;
+	width: fit-content;
+}
+
+.perfil-cv:hover {
+	background: var(--blue-accent);
+	color: var(--white);
+}
+
+.perfil-cv svg {
+	width: 15px;
+	height: 15px;
+}
+
+.perfil-cv--vacio {
+	border-color: #cbd2e0;
+	color: #6b7280;
+}
+
+.perfil-cv--vacio:hover {
+	background: transparent;
+	color: #6b7280;
+	text-decoration: underline;
+}
+
+.perfil-cv-oculto {
+	font-weight: 400;
+	opacity: 0.75;
+	font-size: 0.78rem;
+}
+
+.perfil-cv-verificado {
+	font-weight: 600;
+	font-size: 0.78rem;
+	color: #1a9c5e;
+}
+
+.perfil-cv-rechazado {
+	font-weight: 600;
+	font-size: 0.78rem;
+	color: #d64545;
+}
+
+/* Columna derecha, debajo del tipo de técnico: certificado arriba (en el cuadro) y CV debajo */
+.perfil-documentos {
+	grid-column: 2;
+	grid-row: 2;
+	justify-self: end;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 10px;
+}
+
+.perfil-imagen-principal {
+	width: 220px;
+	height: 170px;
+	border: 2px solid var(--navy-900);
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--navy-900);
+	flex-shrink: 0;
+	overflow: hidden;
+	background: var(--white);
+}
+
+.perfil-imagen-principal svg {
+	width: 46%;
+	height: 46%;
+}
+
+/* Cuadro con el certificado adentro (es un link al archivo completo) */
+.perfil-imagen-principal--certificado {
+	cursor: zoom-in;
+	transition: box-shadow 0.15s ease;
+}
+
+.perfil-imagen-principal--certificado:hover {
+	box-shadow: 0 4px 14px rgba(8, 18, 38, 0.18);
+}
+
+.perfil-imagen-principal img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+.perfil-cert-pdf {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.9rem;
+}
+
+.perfil-cert-pdf svg {
+	width: 40px;
+	height: 40px;
+}
+
+.perfil-cert-estado {
+	font-family: var(--font-heading);
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #5b6478;
+	margin: -4px 0 2px;
+}
+
+.perfil-portfolio {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 18px;
+}
+
+.perfil-portfolio-item {
+	aspect-ratio: 1 / 1;
+	border-radius: 12px;
+	background: #c7cbd4;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--navy-900);
+	overflow: hidden;
+}
+
+.perfil-portfolio-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.perfil-portfolio-item svg {
+	width: 34%;
+	height: 34%;
+}
+
+.perfil-portfolio-add {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--navy-900);
+	transition: background 0.2s ease;
+}
+
+.perfil-portfolio-add:hover {
+	background: #b7bdc9;
+}
+
+.perfil-portfolio-add svg {
+	width: 30%;
+	height: 30%;
+}
+
+.perfil-btn-mensaje {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 9px 16px;
+	border-radius: 7px;
+	background: var(--blue-accent);
+	color: var(--white);
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.85rem;
+	transition: opacity 0.15s ease;
+}
+
+.perfil-btn-mensaje:hover {
+	opacity: 0.88;
+}
+
+.perfil-btn-mensaje svg {
+	width: 16px;
+	height: 16px;
+}
+
+@media (max-width: 700px) {
+	.perfil-card {
+		grid-template-columns: 1fr;
+	}
+
+	.perfil-documentos {
+		grid-column: 1;
+		grid-row: auto;
+		justify-self: start;
+		align-items: flex-start;
+	}
+
+	.perfil-portfolio {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+/* ---------------------------------------------------------
+   CALENDARIO
+   --------------------------------------------------------- */
+
+.calendario-layout {
+	display: grid;
+	grid-template-columns: 1fr 280px;
+	gap: 20px;
+	align-items: start;
+}
+
+.calendario-card {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+}
+
+.calendario-mes {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 20px;
+	border-bottom: 1px solid #eef0f5;
+}
+
+.calendario-mes h2 {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 1.05rem;
+	color: var(--navy-900);
+	text-transform: capitalize;
+}
+
+.calendario-grilla {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+}
+
+.calendario-dia-nombre {
+	padding: 10px 8px;
+	text-align: center;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.72rem;
+	letter-spacing: 0.04em;
+	color: var(--navy-800);
+	background: #f7f8fb;
+	border-bottom: 1px solid #eef0f5;
+}
+
+.calendario-celda {
+	min-height: 78px;
+	padding: 8px;
+	border-right: 1px solid #eef0f5;
+	border-bottom: 1px solid #eef0f5;
+	font-size: 0.85rem;
+	color: var(--navy-900);
+}
+
+.calendario-celda:nth-child(7n) {
+	border-right: none;
+}
+
+.calendario-celda-vacia {
+	background: #fafbfc;
+}
+
+.calendario-celda-hoy {
+	background: #eaf1fc;
+	font-weight: 700;
+	color: var(--blue-accent);
+}
+
+.calendario-celda-evento {
+	position: relative;
+}
+
+.calendario-punto-evento {
+	position: absolute;
+	bottom: 8px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--blue-accent);
+}
+
+.calendario-footer-bar {
+	height: 16px;
+	background: var(--navy-900);
+}
+
+.calendario-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.calendario-panel {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 14px;
+	padding: 16px 18px;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+	position: relative;
+}
+
+.calendario-panel h3 {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.95rem;
+	color: var(--navy-900);
+	text-decoration: underline;
+	text-underline-offset: 4px;
+	margin-bottom: 12px;
+}
+
+.calendario-panel ul {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.calendario-panel li {
+	font-size: 0.85rem;
+	color: #5b6478;
+	border-bottom: 1px solid #eef0f5;
+	padding-bottom: 8px;
+}
+
+.calendario-panel-flecha {
+	position: absolute;
+	top: 50%;
+	right: -12px;
+	transform: translateY(-50%);
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background: var(--white);
+	border: 1px solid #d7dce6;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--navy-800);
+	cursor: pointer;
+}
+
+.calendario-panel-flecha svg {
+	width: 12px;
+	height: 12px;
+}
+
+.calendario-proximo-imagen {
+	margin-top: 12px;
+	aspect-ratio: 16 / 10;
+	background: #eef0f5;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #b7bdc9;
+}
+
+.calendario-proximo-imagen svg {
+	width: 26%;
+	height: 26%;
+}
+
+.calendario-proximo-imagen {
+	overflow: hidden;
+}
+
+.calendario-proximo-imagen img,
+.calendario-proximo-imagen video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+@media (max-width: 800px) {
+	.calendario-layout {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ---------------------------------------------------------
+   MENSAJES
+   --------------------------------------------------------- */
+
+.mensajes-card {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+}
+
+.mensaje-fila {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 20px;
+	border-bottom: 1px solid #eef0f5;
+	transition: background 0.15s ease;
+	color: inherit;
+	text-decoration: none;
+}
+
+.mensaje-fila:last-child {
+	border-bottom: none;
+}
+
+.mensaje-fila:hover {
+	background: #f7f8fb;
+}
+
+.mensaje-avatar {
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+	border: 2px solid #e6e9f0;
+}
+
+.mensaje-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.mensaje-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.mensaje-nombre {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.95rem;
+	color: var(--navy-900);
+	margin-bottom: 2px;
+}
+
+.mensaje-preview {
+	color: #6b7280;
+	font-size: 0.85rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.mensaje-meta {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 4px;
+	flex-shrink: 0;
+}
+
+.mensaje-hora {
+	font-size: 0.78rem;
+	color: #9aa3b5;
+}
+
+.mensaje-visto {
+	color: #9aa3b5;
+}
+
+.mensaje-visto--leido {
+	color: var(--blue-accent);
+}
+
+.mensaje-visto svg {
+	width: 16px;
+	height: 12px;
+}
+
+/* ---------------------------------------------------------
+   NOTIFICACIONES
+   --------------------------------------------------------- */
+
+.notificaciones-encabezado {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.notificaciones-marcar-leidas {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--blue-accent);
+	text-decoration: underline;
+}
+
+.notificaciones-marcar-leidas:hover {
+	color: var(--orange-accent);
+}
+
+.notificaciones-card {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+}
+
+.notificacion-fila {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 20px;
+	border-bottom: 1px solid #eef0f5;
+}
+
+.notificacion-fila:last-child {
+	border-bottom: none;
+}
+
+.notificacion-fila--no-leida {
+	background: #f7faff;
+}
+
+.notificacion-avatar {
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+	border: 2px solid #e6e9f0;
+}
+
+.notificacion-avatar img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.notificacion-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.notificacion-nombre {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.92rem;
+	color: var(--navy-900);
+	margin-bottom: 2px;
+}
+
+.notificacion-texto {
+	color: #5b6478;
+	font-size: 0.85rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 320px;
+}
+
+.notificacion-ver-mas {
+	font-size: 0.78rem;
+	color: var(--blue-accent);
+	text-decoration: underline;
+	flex-shrink: 0;
+}
+
+.notificacion-icono {
+	width: 34px;
+	height: 34px;
+	border-radius: 6px;
+	background: var(--navy-900);
+	color: var(--white);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.notificacion-icono svg {
+	width: 18px;
+	height: 18px;
+}
+
+.notificacion-favorito {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: #d7dce6;
+	flex-shrink: 0;
+}
+
+.notificacion-favorito svg {
+	width: 20px;
+	height: 20px;
+}
+
+.notificacion-favorito--activo {
+	color: #f5b400;
+}
+
+@media (max-width: 600px) {
+	.notificacion-texto {
+		max-width: 140px;
+	}
+}
+
+/* ---------------------------------------------------------
+   CHAT (chat.php)
+   --------------------------------------------------------- */
+
+.panel-page-inner-chat {
+	max-width: 640px;
+}
+
+.chat-card {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+	display: flex;
+	flex-direction: column;
+	height: 72vh;
+	min-height: 420px;
+}
+
+.chat-encabezado {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 14px 20px;
+	border-bottom: 1px solid #eef0f5;
+	flex-shrink: 0;
+}
+
+.chat-encabezado-tipo {
+	color: #6b7280;
+	font-size: 0.82rem;
+}
+
+.chat-mensajes {
+	flex: 1;
+	overflow-y: auto;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background: #f7f8fb;
+}
+
+.chat-vacio {
+	margin: auto;
+	color: #9aa3b5;
+	font-size: 0.9rem;
+	text-align: center;
+}
+
+.chat-burbuja-fila {
+	display: flex;
+}
+
+.chat-burbuja-fila--mia {
+	justify-content: flex-end;
+}
+
+.chat-burbuja {
+	max-width: 72%;
+	padding: 10px 14px;
+	border-radius: 14px;
+	font-size: 0.9rem;
+	line-height: 1.4;
+}
+
+.chat-burbuja p {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.chat-burbuja--otro {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-bottom-left-radius: 4px;
+	color: var(--navy-900);
+	align-self: flex-start;
+}
+
+.chat-burbuja--mia {
+	background: var(--blue-accent);
+	border-bottom-right-radius: 4px;
+	color: var(--white);
+}
+
+.chat-burbuja-pie {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 4px;
+	margin-top: 4px;
+}
+
+.chat-burbuja-hora {
+	font-size: 0.7rem;
+	opacity: 0.65;
+}
+
+.chat-burbuja-visto {
+	display: inline-flex;
+	color: currentColor;
+	opacity: 0.55;
+}
+
+.chat-burbuja-visto--leido {
+	opacity: 1;
+}
+
+.chat-burbuja-visto svg {
+	width: 14px;
+	height: 11px;
+}
+
+.chat-form {
+	display: flex;
+	gap: 10px;
+	padding: 14px 16px;
+	border-top: 1px solid #eef0f5;
+	flex-shrink: 0;
+}
+
+.chat-input {
+	flex: 1;
+	border: 1px solid #d7dce6;
+	border-radius: 20px;
+	padding: 10px 16px;
+	font-size: 0.9rem;
+	font-family: inherit;
+	color: var(--navy-900);
+}
+
+.chat-input:focus {
+	outline: none;
+	border-color: var(--blue-accent);
+}
+
+.chat-enviar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: none;
+	background: var(--blue-accent);
+	color: var(--white);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	flex-shrink: 0;
+	transition: opacity 0.15s ease;
+}
+
+.chat-enviar:hover {
+	opacity: 0.85;
+}
+
+.chat-enviar svg {
+	width: 18px;
+	height: 18px;
+}
+
+/* ---------------------------------------------------------
+   BOTÓN "VOLVER" (includes/boton_volver.php)
+   --------------------------------------------------------- */
+
+.btn-volver {
+	display: inline-flex;
+	align-items: center;
+	align-self: flex-start;
+	gap: 6px;
+	padding: 7px 14px 7px 10px;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.85rem;
+	color: var(--navy-800);
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 999px;
+	box-shadow: 0 2px 8px rgba(8, 18, 38, 0.05);
+	transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-volver svg {
+	width: 16px;
+	height: 16px;
+}
+
+.btn-volver:hover {
+	color: var(--blue-accent);
+	transform: translateX(-2px);
+	box-shadow: 0 4px 12px rgba(8, 18, 38, 0.1);
+}
+
+.btn-volver:focus-visible {
+	outline: 2px solid var(--blue-accent);
+	outline-offset: 2px;
+}
+
+/* En Ajustes el contenedor es una grilla de 2 columnas (menú + contenido):
+   el botón ocupa toda la fila de arriba. */
+.ajustes-volver {
+	grid-column: 1 / -1;
+	flex: 0 0 100%;
+}
+
+/* =========================================================
+   PERFIL: varias especialidades y otros certificados
+   ========================================================= */
+.perfil-especialidades-lista {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+}
+.perfil-certs-extra {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 6px;
+	max-width: 230px;
+}
+.perfil-cert-mini {
+	width: 46px;
+	height: 46px;
+	border: 1px solid #d7dce6;
+	border-radius: 8px;
+	overflow: hidden;
+	display: grid;
+	place-items: center;
+	background: #f3f5f9;
+	font-family: var(--font-heading);
+	font-size: 0.65rem;
+	font-weight: 700;
+	color: #6b7280;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.perfil-cert-mini img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.perfil-cert-mini:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 14px rgba(8, 18, 38, 0.15);
+}
+
+/* =========================================================
+   CHAT: opciones de un mensaje (mantener apretado / clic derecho)
+   ========================================================= */
+.chat-burbuja {
+	position: relative;
+}
+.chat-burbuja--elegida {
+	box-shadow: 0 0 0 3px rgba(47, 127, 224, 0.35);
+}
+
+/* Mensaje eliminado */
+.chat-burbuja--eliminada {
+	background: #eef1f6;
+	border: 1px dashed #cfd5e2;
+	color: #7b8499;
+}
+.chat-burbuja--mia.chat-burbuja--eliminada {
+	background: #eaf2fc;
+	border-color: #bcd3f2;
+	color: #6a86ad;
+}
+.chat-burbuja-borrado {
+	display: flex !important;
+	align-items: center;
+	gap: 6px;
+	font-style: italic;
+}
+.chat-burbuja-borrado svg {
+	width: 14px;
+	height: 14px;
+	flex: 0 0 14px;
+}
+
+/* Icono de calendario en los mensajes que dicen una fecha */
+.chat-burbuja-cal {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px;
+	background: none;
+	border: none;
+	border-radius: 6px;
+	color: inherit;
+	opacity: 0.75;
+	cursor: pointer;
+}
+.chat-burbuja-cal svg {
+	width: 14px;
+	height: 14px;
+}
+.chat-burbuja-cal:hover,
+.chat-burbuja-cal:focus-visible {
+	opacity: 1;
+	background: rgba(127, 140, 165, 0.22);
+}
+
+/* Tres puntitos: solo en la computadora, al pasar el mouse */
+.chat-burbuja-opciones {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	width: 24px;
+	height: 24px;
+	display: grid;
+	place-items: center;
+	padding: 0;
+	border: none;
+	border-radius: 50%;
+	background: rgba(127, 140, 165, 0.25);
+	color: inherit;
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity 0.15s ease;
+}
+.chat-burbuja-opciones svg {
+	width: 14px;
+	height: 14px;
+}
+.chat-burbuja:hover .chat-burbuja-opciones,
+.chat-burbuja-opciones:focus-visible {
+	opacity: 1;
+}
+
+/* En el celular no se puede seleccionar texto al mantener apretado (para eso está "Copiar") */
+@media (hover: none) {
+	.chat-burbuja {
+		-webkit-user-select: none;
+		user-select: none;
+		-webkit-touch-callout: none;
+	}
+	.chat-burbuja-opciones {
+		display: none;
+	}
+}
+
+/* Aviso "Agregado a tu calendario" */
+.chat-aviso {
+	align-self: center;
+	margin: 0 0 4px;
+	padding: 8px 14px;
+	border-radius: 999px;
+	font-size: 0.82rem;
+	text-align: center;
+}
+.chat-aviso--ok {
+	background: #e6f6ec;
+	color: #1c6b3a;
+}
+.chat-aviso--error {
+	background: #fdeceb;
+	color: #a3271c;
+}
+.chat-aviso a {
+	margin-left: 6px;
+	font-weight: 600;
+	color: inherit;
+	text-decoration: underline;
+}
+
+/* Ventana de opciones del mensaje */
+.chat-menu {
+	width: min(92vw, 360px);
+	padding: 8px;
+	border: none;
+	border-radius: 18px;
+	background: var(--white);
+	color: var(--navy-900);
+	box-shadow: 0 24px 60px rgba(8, 18, 38, 0.35);
+}
+.chat-menu::backdrop {
+	background: rgba(8, 18, 38, 0.5);
+}
+.chat-menu-extracto {
+	margin: 0 0 6px;
+	padding: 10px 12px 12px;
+	border-bottom: 1px solid #eef0f5;
+	font-size: 0.85rem;
+	color: #6b7280;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	word-break: break-word;
+}
+.chat-menu-titulo {
+	margin: 0;
+	padding: 10px 12px 12px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 1rem;
+}
+.chat-menu-opcion {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	padding: 13px 14px;
+	background: none;
+	border: none;
+	border-radius: 10px;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.95rem;
+	text-align: left;
+	color: var(--navy-900);
+	cursor: pointer;
+	transition: background 0.15s ease;
+}
+.chat-menu-opcion svg {
+	width: 20px;
+	height: 20px;
+	flex: 0 0 20px;
+}
+.chat-menu-opcion:hover,
+.chat-menu-opcion:focus-visible {
+	background: #f2f5fb;
+}
+.chat-menu-opcion--peligro {
+	color: #a3271c;
+}
+.chat-menu-opcion--peligro:hover,
+.chat-menu-opcion--peligro:focus-visible {
+	background: #fdeceb;
+}
+.chat-menu-opcion--primaria {
+	justify-content: center;
+	background: var(--blue-accent);
+	color: var(--white);
+}
+.chat-menu-opcion--primaria:hover,
+.chat-menu-opcion--primaria:focus-visible {
+	background: #2569bd;
+}
+.chat-menu-opcion[hidden] {
+	display: none;
+}
+.chat-menu-cancelar {
+	width: 100%;
+	margin-top: 6px;
+	padding: 12px;
+	background: #eef1f6;
+	border: none;
+	border-radius: 10px;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.92rem;
+	color: var(--navy-800);
+	cursor: pointer;
+}
+.chat-menu-cancelar:hover {
+	background: #e3e8f1;
+}
+.chat-menu-form {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 0 4px;
+}
+.chat-menu-campo {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: #6b7280;
+}
+.chat-menu-campo span {
+	font-weight: 400;
+}
+.chat-menu-campo input {
+	padding: 10px 12px;
+	border: 1px solid #d7dce6;
+	border-radius: 8px;
+	font-family: var(--font-body);
+	font-size: 0.92rem;
+	color: var(--navy-900);
+}
+.chat-menu-campo input:focus {
+	outline: 2px solid var(--blue-accent);
+	outline-offset: 1px;
+}
+.chat-menu-fila {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+/* En pantallas chicas la ventana sube desde abajo, como en WhatsApp */
+@media (max-width: 600px) {
+	.chat-menu {
+		width: 100%;
+		max-width: none;
+		margin: auto 0 0;
+		border-radius: 18px 18px 0 0;
+		padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+	}
+}
+
+/* =========================================================
+   CALENDARIO: eventos agregados desde un mensaje
+   ========================================================= */
+.calendario-chip-personal {
+	display: block;
+	margin-top: 3px;
+	padding: 2px 6px;
+	border-left: 3px solid var(--orange-accent);
+	border-radius: 5px;
+	background: #fff4e8;
+	color: #a85200;
+	font-size: 0.68rem;
+	line-height: 1.3;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.calendario-quitar-form {
+	display: inline;
+	margin-left: 8px;
+}
+.calendario-quitar {
+	padding: 0;
+	background: none;
+	border: none;
+	font-size: 0.78rem;
+	color: #a3271c;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+/* =========================================================
+   CHAT: botón de opciones del chat (eliminar chat)
+   ========================================================= */
+.chat-encabezado-menu {
+	margin-left: auto;
+	width: 36px;
+	height: 36px;
+	display: grid;
+	place-items: center;
+	padding: 0;
+	border: none;
+	border-radius: 50%;
+	background: transparent;
+	color: #6b7280;
+	cursor: pointer;
+	transition: background 0.15s ease;
+}
+.chat-encabezado-menu svg {
+	width: 20px;
+	height: 20px;
+}
+.chat-encabezado-menu:hover,
+.chat-encabezado-menu:focus-visible {
+	background: #eef1f6;
+}
+
+/* =========================================================
+   PERFIL DEL TÉCNICO: especialidades en solapa y certificados resumidos
+   ========================================================= */
+
+/* Especialidad principal visible + solapa "+N más" */
+.perfil-solapa {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 4px 12px;
+	border: 1px solid #d7dce6;
+	border-radius: 999px;
+	background: var(--white);
+	font-family: var(--font-heading);
+	font-size: 0.74rem;
+	font-weight: 600;
+	color: var(--blue-accent);
+	cursor: pointer;
+	transition: background 0.15s ease, border-color 0.15s ease;
+}
+.perfil-solapa svg {
+	width: 12px;
+	height: 12px;
+	transition: transform 0.2s ease;
+}
+.perfil-solapa:hover,
+.perfil-solapa:focus-visible {
+	background: #f2f5fb;
+	border-color: var(--blue-accent);
+}
+.perfil-solapa[aria-expanded="true"] svg {
+	transform: rotate(180deg);
+}
+.perfil-solapa-panel {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 6px;
+	max-width: 260px;
+	padding: 10px;
+	border: 1px solid #e6e9f0;
+	border-radius: 10px;
+	background: #f7f9fd;
+}
+.perfil-solapa-panel[hidden] {
+	display: none;
+}
+.perfil-esp-chip {
+	padding: 4px 11px;
+	border: 1px solid #d7dce6;
+	border-radius: 999px;
+	background: var(--white);
+	font-family: var(--font-heading);
+	font-size: 0.76rem;
+	font-weight: 600;
+	color: var(--navy-800);
+}
+
+/* Certificados: indicador "Hay N más" + botón Revisar */
+.perfil-cert-resumen {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: -2px;
+}
+.perfil-cert-mas {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 3px 10px;
+	border-radius: 999px;
+	background: #eef4fd;
+	font-family: var(--font-heading);
+	font-size: 0.76rem;
+	font-weight: 600;
+	color: #3d5a80;
+}
+.perfil-cert-mas svg {
+	width: 13px;
+	height: 13px;
+	color: var(--blue-accent);
+}
+.perfil-cert-revisar {
+	padding: 6px 14px;
+	border: 1px solid var(--blue-accent);
+	border-radius: 7px;
+	background: var(--white);
+	font-family: var(--font-heading);
+	font-size: 0.82rem;
+	font-weight: 600;
+	color: var(--blue-accent);
+	cursor: pointer;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+.perfil-cert-revisar:hover,
+.perfil-cert-revisar:focus-visible {
+	background: var(--blue-accent);
+	color: var(--white);
+}
+
+/* Ventana "Revisar": detalle de cada certificado */
+.perfil-cert-detalle-lista {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.perfil-cert-detalle {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px;
+	border: 1px solid #e6e9f0;
+	border-radius: 12px;
+}
+.perfil-cert-detalle-mini {
+	flex: 0 0 64px;
+	width: 64px;
+	height: 64px;
+	display: grid;
+	place-items: center;
+	border: 1px solid #e6e9f0;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #f3f5f9;
+	font-family: var(--font-heading);
+	font-size: 0.78rem;
+	font-weight: 700;
+	color: #6b7280;
+}
+.perfil-cert-detalle-mini img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.perfil-cert-detalle-info {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.perfil-cert-detalle-info strong {
+	font-family: var(--font-heading);
+	font-size: 0.92rem;
+	color: var(--navy-900);
+}
+.perfil-cert-detalle-info span {
+	font-size: 0.8rem;
+	color: #6b7280;
+}
+.perfil-cert-detalle-abrir {
+	padding: 6px 12px;
+	border: 1px solid var(--blue-accent);
+	border-radius: 7px;
+	font-family: var(--font-heading);
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--blue-accent);
+	text-decoration: none;
+	transition: background 0.15s ease, color 0.15s ease;
+}
+.perfil-cert-detalle-abrir:hover {
+	background: var(--blue-accent);
+	color: var(--white);
+}
+
+@media (max-width: 700px) {
+	.perfil-cert-resumen {
+		justify-content: flex-start;
+	}
+}

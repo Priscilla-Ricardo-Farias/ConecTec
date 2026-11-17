@@ -1,0 +1,147 @@
+/* ---------------------------------------------------------
+   VERIFICAR CUENTA / ABONO (verificar_cuenta.php, pagar.php)
+   --------------------------------------------------------- */
+
+.plan-card {
+	padding: 24px 24px 20px;
+}
+
+.plan-encabezado {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+	margin-bottom: 18px;
+}
+
+.plan-nombre {
+	font-family: var(--font-heading);
+	font-size: 1.25rem;
+	color: var(--navy-900);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.plan-estado {
+	margin-top: 4px;
+	font-size: 0.88rem;
+	color: #6b7280;
+}
+
+.plan-estado--activo {
+	color: #1a8f4c;
+	font-weight: 600;
+}
+
+.plan-precio {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: 1.6rem;
+	color: var(--navy-900);
+}
+
+.plan-precio span {
+	font-size: 0.85rem;
+	font-weight: 500;
+	color: #6b7280;
+}
+
+.plan-beneficios {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.plan-beneficios li {
+	position: relative;
+	padding-left: 28px;
+	font-size: 0.93rem;
+	color: var(--navy-800);
+	line-height: 1.45;
+}
+
+.plan-beneficios li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 2px;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: var(--orange-accent);
+}
+
+.plan-beneficios li::after {
+	content: "";
+	position: absolute;
+	left: 6px;
+	top: 6px;
+	width: 5px;
+	height: 9px;
+	border: solid #fff;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+.plan-acciones {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.plan-acciones .ajustes-btn {
+	display: inline-flex;
+	align-items: center;
+	text-decoration: none;
+}
+
+.plan-nota {
+	margin-top: 14px;
+	font-size: 0.82rem;
+	color: #6b7280;
+	line-height: 1.5;
+}
+
+.plan-nota a {
+	color: var(--blue-accent);
+	font-weight: 600;
+}
+
+.plan-resumen-fila {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 6px 0 16px;
+	font-size: 1rem;
+	color: var(--navy-900);
+}
+
+.plan-aviso-prueba {
+	background: #fff6e5;
+	color: #8a5a00;
+	border: 1px solid #ffd99a;
+	border-radius: 10px;
+	padding: 10px 14px;
+	font-size: 0.85rem;
+	margin-bottom: 16px;
+}
+
+.plan-verificacion {
+	margin-top: 8px;
+	font-size: 0.85rem;
+	line-height: 1.45;
+}
+
+.plan-verificacion--pendiente { color: #8a5a00; }
+.plan-verificacion--aprobada  { color: #1a8f4c; font-weight: 600; }
+.plan-verificacion--rechazada { color: #c0392b; }
+
+.plan-verificacion a {
+	color: var(--blue-accent);
+	font-weight: 600;
+}

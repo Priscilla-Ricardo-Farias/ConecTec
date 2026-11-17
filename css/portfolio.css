@@ -1,0 +1,943 @@
+/* =========================================================
+   portfolio.css
+   Galería de trabajos del perfil del técnico (perfil.php):
+     - título de la sección y grilla de miniaturas
+     - diálogo "Nueva publicación" (cámara, galería, vista previa)
+     - diálogo para ver una publicación en grande
+
+   Se carga después de panel.css:
+   $extra_css = ['css/feed.css', 'css/panel.css', 'css/portfolio.css'];
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   TÍTULO DE LA SECCIÓN
+   --------------------------------------------------------- */
+
+.perfil-seccion-titulo {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 6px 0 14px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.8rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--navy-800);
+}
+
+.perfil-seccion-titulo::after {
+	content: "";
+	flex: 1;
+	height: 1px;
+	background: linear-gradient(90deg, #cfd5e2, transparent);
+}
+
+.perfil-seccion-titulo svg {
+	width: 16px;
+	height: 16px;
+}
+
+/* ---------------------------------------------------------
+   AVISOS (publicaste / eliminaste / error)
+   --------------------------------------------------------- */
+
+.perfil-aviso {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.88rem;
+	font-weight: 500;
+	padding: 11px 16px;
+	border-radius: 12px;
+	margin-bottom: 14px;
+	animation: portfolio-aparecer 0.3s ease both;
+}
+
+.perfil-aviso--ok {
+	background: #e8f6ee;
+	color: #1a7f45;
+	border: 1px solid #c4e8d2;
+}
+
+.perfil-aviso--error {
+	background: #fdecec;
+	color: #b42318;
+	border: 1px solid #f5c6c1;
+}
+
+/* ---------------------------------------------------------
+   MINIATURAS
+   --------------------------------------------------------- */
+
+.perfil-portfolio {
+	gap: 14px;
+}
+
+.perfil-portfolio-item {
+	position: relative;
+	border-radius: 16px;
+	background: #e9ecf3;
+	color: #9aa3b5;
+	box-shadow: 0 2px 8px rgba(8, 18, 38, 0.06);
+}
+
+/* Casilleros de ejemplo cuando todavía no hay publicaciones */
+.perfil-portfolio-item:not(.perfil-portfolio-post):not(.perfil-portfolio-add) svg {
+	width: 28%;
+	height: 28%;
+	opacity: 0.7;
+}
+
+/* Foto publicada */
+.perfil-portfolio-post {
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.perfil-portfolio-post img {
+	transition: transform 0.4s ease;
+}
+
+.perfil-portfolio-post::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, transparent 55%, rgba(8, 18, 38, 0.55));
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+
+.perfil-portfolio-post:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 14px 28px rgba(8, 18, 38, 0.22);
+	opacity: 1;
+}
+
+.perfil-portfolio-post:hover img {
+	transform: scale(1.06);
+}
+
+.perfil-portfolio-post:hover::after {
+	opacity: 1;
+}
+
+.perfil-portfolio-post:focus-visible,
+.perfil-portfolio-add:focus-visible {
+	outline: 3px solid var(--blue-accent);
+	outline-offset: 2px;
+}
+
+/* Primer casillero: "+ Publicar" */
+.perfil-portfolio-add {
+	flex-direction: column;
+	gap: 10px;
+	background: var(--white);
+	border: 2px dashed #b9c2d6;
+	cursor: pointer;
+	color: var(--navy-800);
+	box-shadow: none;
+	transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.perfil-portfolio-add:hover {
+	background: #fff6ee;
+	border-color: var(--orange-accent);
+	transform: translateY(-3px);
+}
+
+.perfil-portfolio-add-icono {
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, var(--orange-accent), #ffa24d);
+	color: var(--white);
+	box-shadow: 0 6px 14px rgba(255, 122, 26, 0.4);
+	transition: transform 0.25s ease;
+}
+
+.perfil-portfolio-add:hover .perfil-portfolio-add-icono {
+	transform: rotate(90deg) scale(1.08);
+}
+
+.perfil-portfolio-add .perfil-portfolio-add-icono svg {
+	width: 22px;
+	height: 22px;
+}
+
+.perfil-portfolio-add-texto {
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.8rem;
+}
+
+/* ---------------------------------------------------------
+   DIÁLOGOS (publicar y ver)
+   --------------------------------------------------------- */
+
+.portfolio-dialog {
+	/* nobese.css hace "* { margin: 0 }", que le saca al <dialog> el margin:auto
+	   con el que el navegador lo centra: hay que devolvérselo. */
+	margin: auto;
+	border: none;
+	padding: 0;
+	border-radius: 22px;
+	width: min(94vw, 480px);
+	max-height: 92vh;
+	overflow: hidden;
+	background: var(--white);
+	color: var(--navy-900);
+	box-shadow: 0 30px 80px rgba(8, 18, 38, 0.45);
+}
+
+.portfolio-dialog[open] {
+	animation: portfolio-pop 0.26s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+
+.portfolio-dialog::backdrop {
+	background: rgba(8, 18, 38, 0.66);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+}
+
+.portfolio-dialog[open]::backdrop {
+	animation: portfolio-aparecer 0.25s ease both;
+}
+
+.portfolio-dialog--ver {
+	width: min(94vw, 560px);
+}
+
+@keyframes portfolio-pop {
+	from { opacity: 0; transform: translateY(18px) scale(0.96); }
+	to   { opacity: 1; transform: none; }
+}
+
+@keyframes portfolio-aparecer {
+	from { opacity: 0; }
+	to   { opacity: 1; }
+}
+
+/* ---------------------------------------------------------
+   FORMULARIO "NUEVA PUBLICACIÓN"
+   --------------------------------------------------------- */
+
+.portfolio-form {
+	display: flex;
+	flex-direction: column;
+	max-height: 92vh;
+}
+
+.portfolio-cabecera {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px 56px 16px;
+	border-bottom: 1px solid #e6e9f0;
+	background: linear-gradient(180deg, #f7f9fd, var(--white));
+}
+
+.portfolio-cabecera::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 5px;
+	background: linear-gradient(90deg, var(--navy-900), var(--blue-accent) 65%, var(--orange-accent));
+}
+
+.portfolio-form h3 {
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 1.05rem;
+	color: var(--navy-900);
+	text-align: center;
+}
+
+.portfolio-cerrar {
+	position: absolute;
+	top: 50%;
+	right: 14px;
+	transform: translateY(-40%);
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	border: none;
+	background: #eef1f6;
+	color: var(--navy-800);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.portfolio-cerrar svg {
+	width: 16px;
+	height: 16px;
+}
+
+.portfolio-cerrar:hover {
+	background: var(--navy-900);
+	color: var(--white);
+	transform: translateY(-40%) rotate(90deg);
+}
+
+.portfolio-cuerpo {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 22px 22px 8px;
+	overflow-y: auto;
+}
+
+.portfolio-cuerpo > * {
+	flex-shrink: 0;
+}
+
+/* Con la cámara abierta se esconde lo que sobra para que quede todo a la vista */
+.portfolio-form--camara .portfolio-ayuda,
+.portfolio-form--camara .portfolio-campo {
+	display: none;
+}
+
+.portfolio-ayuda {
+	text-align: center;
+	font-size: 0.88rem;
+	color: #6b7280;
+	margin-bottom: -2px;
+}
+
+/* Elegir cámara o galería */
+
+.portfolio-elegir {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 14px;
+}
+
+.portfolio-opcion {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	padding: 24px 12px 20px;
+	background: #f6f8fc;
+	border: 2px dashed #c3cbdc;
+	border-radius: 18px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.92rem;
+	color: var(--navy-900);
+	cursor: pointer;
+	transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portfolio-opcion small {
+	font-family: var(--font-body);
+	font-weight: 400;
+	font-size: 0.76rem;
+	color: #7a8296;
+}
+
+.portfolio-opcion-icono {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 4px;
+	background: linear-gradient(135deg, var(--navy-700), var(--blue-accent));
+	color: var(--white);
+	box-shadow: 0 8px 18px rgba(47, 127, 224, 0.35);
+	transition: transform 0.25s ease;
+}
+
+.portfolio-opcion:hover {
+	background: #eef5ff;
+	border-color: var(--blue-accent);
+	border-style: solid;
+	transform: translateY(-3px);
+	box-shadow: 0 12px 24px rgba(47, 127, 224, 0.18);
+}
+
+.portfolio-opcion:hover .portfolio-opcion-icono {
+	transform: scale(1.1);
+}
+
+.portfolio-opcion:focus-visible {
+	outline: 3px solid var(--blue-accent);
+	outline-offset: 2px;
+}
+
+.portfolio-opcion svg {
+	width: 26px;
+	height: 26px;
+}
+
+.portfolio-elegir[hidden],
+.portfolio-camara[hidden] {
+	display: none;
+}
+
+/* Cámara dentro de la app: los botones van ENCIMA del video, así nunca quedan cortados */
+
+.portfolio-camara {
+	position: relative;
+	background: #000;
+	border-radius: 18px;
+	overflow: hidden;
+	box-shadow: 0 10px 24px rgba(8, 18, 38, 0.3);
+}
+
+.portfolio-video {
+	display: block;
+	width: 100%;
+	aspect-ratio: 3 / 4;
+	max-height: calc(92vh - 190px);
+	object-fit: cover;
+	background: #000;
+}
+
+.portfolio-video--espejo {
+	transform: scaleX(-1);
+}
+
+.portfolio-camara-controles {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 28px 16px 16px;
+	background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.7));
+}
+
+.portfolio-camara-lateral {
+	background: rgba(255, 255, 255, 0.2);
+	border: none;
+	border-radius: 999px;
+	padding: 10px 16px;
+	color: #fff;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.85rem;
+	cursor: pointer;
+	min-width: 84px;
+	backdrop-filter: blur(4px);
+	transition: background 0.2s ease;
+}
+
+.portfolio-camara-lateral:hover {
+	background: rgba(255, 255, 255, 0.35);
+}
+
+.portfolio-disparador {
+	width: 68px;
+	height: 68px;
+	border-radius: 50%;
+	background: #fff;
+	border: 5px solid rgba(255, 255, 255, 0.5);
+	background-clip: padding-box;
+	cursor: pointer;
+	transition: transform 0.15s ease;
+}
+
+.portfolio-disparador:hover {
+	transform: scale(1.06);
+}
+
+.portfolio-disparador:active {
+	transform: scale(0.9);
+}
+
+/* Vista previa: cuadrada, igual que se va a ver en la galería */
+
+.portfolio-previa {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	max-height: 56vh;
+	object-fit: cover;
+	border-radius: 18px;
+	background: #eef1f6;
+	box-shadow: 0 10px 26px rgba(8, 18, 38, 0.2);
+}
+
+.portfolio-cambiar {
+	align-self: center;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: -4px;
+	padding: 8px 16px;
+	background: #eef5ff;
+	border: none;
+	border-radius: 999px;
+	color: var(--blue-accent);
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.84rem;
+	cursor: pointer;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+
+.portfolio-cambiar:hover {
+	background: var(--blue-accent);
+	color: var(--white);
+}
+
+.portfolio-cambiar[hidden],
+.portfolio-previa[hidden],
+.portfolio-mensaje[hidden] {
+	display: none;
+}
+
+.portfolio-mensaje {
+	font-size: 0.85rem;
+	color: #b42318;
+	background: #fdecec;
+	border: 1px solid #f5c6c1;
+	border-radius: 12px;
+	padding: 10px 14px;
+}
+
+/* Descripción */
+
+.portfolio-campo {
+	position: relative;
+}
+
+.portfolio-campo label {
+	display: block;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.72rem;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--navy-800);
+	margin-bottom: 8px;
+}
+
+.portfolio-form textarea {
+	width: 100%;
+	border: 1.5px solid #d7dce6;
+	border-radius: 14px;
+	padding: 12px 14px;
+	font-family: var(--font-body);
+	font-size: 0.92rem;
+	color: var(--navy-900);
+	background: #fbfcfe;
+	resize: none;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.portfolio-form textarea::placeholder {
+	color: #9aa3b5;
+}
+
+.portfolio-form textarea:focus {
+	outline: none;
+	background: var(--white);
+	border-color: var(--blue-accent);
+	box-shadow: 0 0 0 4px rgba(47, 127, 224, 0.14);
+}
+
+.portfolio-contador {
+	display: block;
+	text-align: right;
+	margin-top: 4px;
+	font-size: 0.74rem;
+	color: #9aa3b5;
+}
+
+.portfolio-contador--limite {
+	color: var(--orange-accent);
+	font-weight: 600;
+}
+
+/* Botones */
+
+.portfolio-acciones {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	padding: 16px 22px 20px;
+}
+
+.portfolio-btn {
+	padding: 11px 22px;
+	border-radius: 999px;
+	border: 1.5px solid #d7dce6;
+	background: var(--white);
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.86rem;
+	color: var(--navy-800);
+	cursor: pointer;
+	transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.portfolio-btn:hover {
+	border-color: var(--navy-800);
+	background: #f6f8fc;
+}
+
+.portfolio-btn--primario {
+	border: none;
+	padding: 12px 30px;
+	background: linear-gradient(135deg, var(--orange-accent), #ff9a3d);
+	color: var(--white);
+	box-shadow: 0 8px 18px rgba(255, 122, 26, 0.38);
+}
+
+.portfolio-btn--primario:hover {
+	background: linear-gradient(135deg, #f26a08, var(--orange-accent));
+	transform: translateY(-2px);
+	box-shadow: 0 12px 24px rgba(255, 122, 26, 0.45);
+}
+
+.portfolio-btn--primario:active {
+	transform: translateY(0);
+}
+
+.portfolio-btn--peligro {
+	color: #b42318;
+	border-color: #f1b8b3;
+}
+
+.portfolio-btn--peligro:hover {
+	background: #fdecec;
+	border-color: #b42318;
+}
+
+.portfolio-btn:focus-visible,
+.portfolio-cerrar:focus-visible {
+	outline: 3px solid var(--blue-accent);
+	outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------
+   VER UNA PUBLICACIÓN EN GRANDE
+   --------------------------------------------------------- */
+
+.portfolio-ver-marco {
+	position: relative;
+	background: var(--navy-900);
+}
+
+.portfolio-ver-img {
+	display: block;
+	width: 100%;
+	max-height: 62vh;
+	object-fit: contain;
+	background: var(--navy-900);
+}
+
+.portfolio-ver-cerrar {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: none;
+	background: rgba(8, 18, 38, 0.6);
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	backdrop-filter: blur(4px);
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.portfolio-ver-cerrar svg {
+	width: 16px;
+	height: 16px;
+}
+
+.portfolio-ver-cerrar:hover {
+	background: var(--orange-accent);
+	transform: rotate(90deg);
+}
+
+.portfolio-ver-info {
+	padding: 18px 22px 0;
+}
+
+.portfolio-ver-desc {
+	font-size: 0.95rem;
+	line-height: 1.55;
+	color: var(--navy-900);
+	white-space: pre-line;
+}
+
+.portfolio-ver-desc:empty {
+	display: none;
+}
+
+.portfolio-ver-fecha {
+	margin-top: 8px;
+	font-size: 0.78rem;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	color: #8b94a8;
+}
+
+.portfolio-ver-fecha:empty {
+	display: none;
+}
+
+.portfolio-dialog--ver .portfolio-acciones {
+	margin-top: 0;
+	padding-top: 14px;
+}
+
+/* ---------------------------------------------------------
+   CELULAR
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+	.perfil-portfolio {
+		gap: 10px;
+	}
+
+	.perfil-portfolio-item {
+		border-radius: 12px;
+	}
+}
+
+@media (max-width: 420px) {
+	.portfolio-elegir {
+		gap: 10px;
+	}
+
+	.portfolio-opcion {
+		padding: 18px 8px 16px;
+	}
+
+	.portfolio-btn {
+		padding: 11px 18px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.portfolio-dialog[open],
+	.portfolio-dialog[open]::backdrop,
+	.perfil-aviso {
+		animation: none;
+	}
+
+	.perfil-portfolio-post,
+	.perfil-portfolio-post img,
+	.perfil-portfolio-add,
+	.portfolio-opcion {
+		transition: none;
+	}
+}
+
+/* =========================================================
+   Varias fotos por publicación
+   ========================================================= */
+
+/* Aviso de "esta publicación tiene varias fotos" en el casillero de la galería */
+.perfil-portfolio-post {
+	position: relative;
+}
+.perfil-portfolio-multi {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	z-index: 2;
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 3px 8px;
+	border-radius: 999px;
+	background: rgba(8, 18, 38, 0.72);
+	color: #fff;
+	font-family: var(--font-heading);
+	font-size: 0.72rem;
+	font-weight: 600;
+	pointer-events: none;
+}
+.perfil-portfolio-multi svg {
+	width: 13px;
+	height: 13px;
+}
+
+/* Subir: miniaturas de las fotos elegidas */
+.portfolio-miniaturas {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+	gap: 8px;
+}
+.portfolio-miniatura {
+	position: relative;
+	aspect-ratio: 1 / 1;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #eef1f6;
+}
+.portfolio-miniatura img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+.portfolio-miniatura-quitar {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: none;
+	border-radius: 50%;
+	background: rgba(8, 18, 38, 0.75);
+	color: #fff;
+	font-size: 1rem;
+	line-height: 1;
+	cursor: pointer;
+}
+.portfolio-miniatura-quitar:hover {
+	background: #a3271c;
+}
+.portfolio-miniaturas-cuenta {
+	margin: 0;
+	text-align: center;
+	font-size: 0.8rem;
+	color: #6b7280;
+}
+.portfolio-mas {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 8px;
+}
+.portfolio-mas .portfolio-cambiar {
+	margin-top: 0;
+}
+.portfolio-mas[hidden],
+.portfolio-miniaturas[hidden],
+.portfolio-miniaturas-cuenta[hidden],
+.portfolio-mas .portfolio-cambiar[hidden] {
+	display: none;
+}
+
+/* Ver: ruleta de fotos (se desliza, con las flechas o con los puntitos) */
+.portfolio-carrusel {
+	position: relative;
+}
+.portfolio-carrusel-pista {
+	display: flex;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	overscroll-behavior-x: contain;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+}
+.portfolio-carrusel-pista::-webkit-scrollbar {
+	display: none;
+}
+.portfolio-carrusel-foto {
+	flex: 0 0 100%;
+	width: 100%;
+	max-height: 62vh;
+	object-fit: contain;
+	background: var(--navy-900);
+	scroll-snap-align: center;
+	scroll-snap-stop: always;
+	-webkit-user-select: none;
+	user-select: none;
+}
+.portfolio-carrusel-flecha {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+	width: 38px;
+	height: 38px;
+	display: grid;
+	place-items: center;
+	padding: 0;
+	border: none;
+	border-radius: 50%;
+	background: rgba(8, 18, 38, 0.6);
+	color: #fff;
+	cursor: pointer;
+	transition: background 0.2s ease, opacity 0.2s ease;
+}
+.portfolio-carrusel-flecha svg {
+	width: 18px;
+	height: 18px;
+}
+.portfolio-carrusel-flecha:hover {
+	background: rgba(8, 18, 38, 0.85);
+}
+.portfolio-carrusel-flecha--ant { left: 10px; }
+.portfolio-carrusel-flecha--sig { right: 10px; }
+.portfolio-carrusel-flecha:disabled {
+	opacity: 0;
+	pointer-events: none;
+}
+.portfolio-carrusel-contador {
+	position: absolute;
+	left: 12px;
+	bottom: 12px;
+	z-index: 2;
+	padding: 3px 10px;
+	border-radius: 999px;
+	background: rgba(8, 18, 38, 0.68);
+	color: #fff;
+	font-family: var(--font-heading);
+	font-size: 0.74rem;
+	font-weight: 600;
+}
+.portfolio-carrusel-puntos {
+	display: flex;
+	justify-content: center;
+	gap: 6px;
+	padding: 8px 0 10px;
+	background: var(--navy-900);
+}
+.portfolio-carrusel-puntos[hidden] {
+	display: none;
+}
+.portfolio-carrusel-punto {
+	width: 7px;
+	height: 7px;
+	padding: 0;
+	border: none;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.35);
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+.portfolio-carrusel-punto--activo {
+	background: #fff;
+	transform: scale(1.3);
+}
+.portfolio-carrusel--una .portfolio-carrusel-flecha,
+.portfolio-carrusel--una .portfolio-carrusel-contador {
+	display: none;
+}
+.portfolio-ver-marco .portfolio-ver-cerrar {
+	z-index: 3;
+}
+/* En el celular se desliza con el dedo: las flechas sobran */
+@media (hover: none) {
+	.portfolio-carrusel-flecha {
+		display: none;
+	}
+}

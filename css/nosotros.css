@@ -1,0 +1,370 @@
+/* =========================================================
+   nosotros.css — página "Sobre Nosotros" (rediseño)
+   Usa las variables de nobese.css (navy, blue-accent, orange-accent)
+   ========================================================= */
+
+/* ---------- PORTADA ---------- */
+.nos-hero {
+	position: relative;
+	overflow: hidden;
+	background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 55%, var(--navy-700) 100%);
+	padding: 90px 24px 110px;
+}
+
+.nos-hero::before {
+	content: "";
+	position: absolute;
+	width: 520px;
+	height: 520px;
+	right: -140px;
+	top: -160px;
+	background: radial-gradient(circle, rgba(47, 127, 224, 0.35), transparent 70%);
+	pointer-events: none;
+}
+
+.nos-hero-inner {
+	position: relative;
+	max-width: 1100px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1.05fr 1fr;
+	gap: 56px;
+	align-items: center;
+}
+
+.nos-etiqueta {
+	display: inline-block;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.78rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--orange-accent);
+	border: 1px solid rgba(255, 122, 26, 0.5);
+	border-radius: 999px;
+	padding: 5px 14px;
+	margin-bottom: 20px;
+}
+
+.nos-hero h1 {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: clamp(2rem, 3.8vw, 3.1rem);
+	line-height: 1.15;
+	color: var(--white);
+	margin-bottom: 20px;
+}
+
+.nos-resalte {
+	background: linear-gradient(90deg, var(--orange-accent), #ffb15c);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+.nos-bajada {
+	color: var(--text-muted);
+	font-size: 1.1rem;
+	max-width: 480px;
+	margin-bottom: 30px;
+}
+
+.nos-botones {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+}
+
+.nos-btn {
+	display: inline-block;
+	font-family: var(--font-heading);
+	font-weight: 600;
+	font-size: 0.95rem;
+	padding: 13px 28px;
+	border-radius: 999px;
+	transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.nos-btn:hover {
+	transform: translateY(-2px);
+}
+
+.nos-btn-principal {
+	background: var(--orange-accent);
+	color: var(--white);
+	box-shadow: 0 8px 22px rgba(255, 122, 26, 0.35);
+}
+
+.nos-btn-principal:hover {
+	background: #ff8c38;
+}
+
+.nos-btn-secundario {
+	color: var(--white);
+	border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.nos-btn-secundario:hover {
+	border-color: var(--white);
+	background: rgba(255, 255, 255, 0.08);
+}
+
+/* Collage: 3 fotos superpuestas con leve rotación */
+.nos-collage {
+	position: relative;
+	height: 440px;
+}
+
+.nos-foto {
+	position: absolute;
+	margin: 0;
+	border-radius: 16px;
+	overflow: hidden;
+	border: 4px solid rgba(255, 255, 255, 0.9);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+	transition: transform 0.35s ease;
+}
+
+.nos-foto img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.nos-foto-1 { width: 50%; height: 78%; left: 0; top: 10%; transform: rotate(-4deg); z-index: 1; }
+.nos-foto-2 { width: 56%; height: 46%; right: 0; top: 0; transform: rotate(3deg); z-index: 2; }
+.nos-foto-3 { width: 56%; height: 46%; right: 4%; bottom: 0; transform: rotate(-2deg); z-index: 3; }
+
+.nos-foto:hover {
+	transform: rotate(0) scale(1.04);
+	z-index: 5;
+}
+
+.nos-chip {
+	position: absolute;
+	z-index: 4;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	font-size: 0.82rem;
+	color: var(--white);
+	padding: 8px 16px;
+	border-radius: 999px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.nos-chip-1 { background: var(--blue-accent); left: 36%; top: 4%; }
+.nos-chip-2 { background: var(--orange-accent); left: 2%; bottom: 4%; }
+
+/* ---------- SECCIONES ---------- */
+.nos-seccion {
+	padding: 84px 24px;
+	background: #f6f8fc;
+}
+
+.nos-seccion-oscura {
+	background: linear-gradient(135deg, var(--navy-900), var(--navy-800));
+	position: relative;
+}
+
+.nos-contenedor {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.nos-titulo {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+	color: var(--navy-900);
+	text-align: center;
+	margin-bottom: 8px;
+}
+
+.nos-titulo::after {
+	content: "";
+	display: block;
+	width: 60px;
+	height: 4px;
+	margin: 14px auto 0;
+	background: linear-gradient(90deg, var(--orange-accent), var(--blue-accent));
+	border-radius: 4px;
+}
+
+.nos-titulo-claro { color: var(--white); }
+
+.nos-subtitulo {
+	text-align: center;
+	color: #5b6478;
+	margin: 14px 0 44px;
+}
+
+.nos-subtitulo-claro { color: var(--text-muted); }
+
+/* Tarjetas */
+.nos-tarjetas {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+}
+
+.nos-tarjeta {
+	background: var(--white);
+	border-radius: 18px;
+	padding: 34px 28px;
+	text-align: center;
+	box-shadow: 0 10px 30px rgba(8, 18, 38, 0.08);
+	border-top: 4px solid var(--blue-accent);
+	transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.nos-tarjeta:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 18px 40px rgba(8, 18, 38, 0.16);
+}
+
+.nos-tarjeta-destacada { border-top-color: var(--orange-accent); }
+
+.nos-icono {
+	width: 68px;
+	height: 68px;
+	margin: 0 auto 18px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+	color: var(--white);
+}
+
+.nos-tarjeta-destacada .nos-icono {
+	background: linear-gradient(135deg, var(--orange-accent), #ff9d4d);
+}
+
+.nos-icono svg { width: 32px; height: 32px; }
+
+.nos-tarjeta h3 {
+	font-family: var(--font-heading);
+	font-size: 1.2rem;
+	color: var(--navy-900);
+	margin-bottom: 8px;
+}
+
+.nos-tarjeta p { color: #5b6478; }
+
+/* Pasos */
+.nos-pasos {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 32px;
+	position: relative;
+}
+
+.nos-pasos::before {
+	content: "";
+	position: absolute;
+	top: 32px;
+	left: 16%;
+	right: 16%;
+	border-top: 2px dashed rgba(47, 127, 224, 0.55);
+}
+
+.nos-pasos li {
+	position: relative;
+	text-align: center;
+	color: var(--text-muted);
+}
+
+.nos-paso-num {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+	margin: 0 auto 18px;
+	border-radius: 50%;
+	background: var(--orange-accent);
+	color: var(--white);
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: 1.5rem;
+	box-shadow: 0 0 0 8px rgba(255, 122, 26, 0.2);
+}
+
+.nos-pasos h3 {
+	font-family: var(--font-heading);
+	color: var(--white);
+	font-size: 1.15rem;
+	margin-bottom: 6px;
+}
+
+/* Valores */
+.nos-valores {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	margin-bottom: 64px;
+}
+
+.nos-valor {
+	text-align: center;
+	padding: 6px 12px;
+	border-left: 3px solid var(--orange-accent);
+	text-align: left;
+	padding-left: 18px;
+}
+
+.nos-valor strong {
+	display: block;
+	font-family: var(--font-heading);
+	font-size: 1.3rem;
+	color: var(--navy-900);
+}
+
+.nos-valor span { color: #5b6478; }
+
+/* Cierre */
+.nos-cierre {
+	text-align: center;
+	padding: 56px 28px;
+	border-radius: 22px;
+	background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+	color: var(--text-muted);
+	box-shadow: 0 16px 40px rgba(8, 18, 38, 0.25);
+}
+
+.nos-cierre h2 {
+	font-family: var(--font-heading);
+	font-weight: 800;
+	font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+	color: var(--white);
+	margin-bottom: 8px;
+}
+
+.nos-cierre p { margin-bottom: 26px; }
+
+/* ---------- ANIMACIÓN DE ENTRADA ---------- */
+@keyframes nos-subir {
+	from { opacity: 0; transform: translateY(24px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+
+.nos-hero-texto > * { animation: nos-subir 0.7s ease both; }
+.nos-hero-texto > *:nth-child(2) { animation-delay: 0.1s; }
+.nos-hero-texto > *:nth-child(3) { animation-delay: 0.2s; }
+.nos-hero-texto > *:nth-child(4) { animation-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+	.nos-hero-texto > * { animation: none; }
+	.nos-tarjeta, .nos-foto, .nos-btn { transition: none; }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+	.nos-hero { padding: 60px 20px 80px; }
+	.nos-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+	.nos-collage { height: 360px; max-width: 520px; margin: 0 auto; width: 100%; }
+	.nos-tarjetas, .nos-pasos, .nos-valores { grid-template-columns: 1fr; }
+	.nos-pasos::before { display: none; }
+	.nos-seccion { padding: 60px 20px; }
+}

@@ -1,0 +1,823 @@
+/* =========================================================
+   GT — nobese.css
+   Paleta:
+   --navy-900: #081226  (fondo más oscuro)
+   --navy-800: #0d1f42
+   --navy-700: #163061
+   --blue-accent: #2f7fe0
+   --orange-accent: #ff7a1a (tomado del isotipo)
+   --white: #ffffff
+   ========================================================= */
+
+:root {
+  --navy-900: #081226;
+  --navy-800: #0d1f42;
+  --navy-700: #163061;
+  --blue-accent: #2f7fe0;
+  --orange-accent: #ff7a1a;
+  --white: #ffffff;
+  --text-muted: #b9c4dc;
+
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--navy-900);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+  background: var(--navy-900);
+  border-bottom: 1px solid #081226;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 7px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo-link {
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 90px;
+  width: 90px;
+}
+
+.main-nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 32px;
+}
+
+.main-nav a {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--white);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--blue-accent);
+}
+
+.main-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--orange-accent);
+  border-radius: 2px;
+}
+
+.header-auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Botón "Iniciar sesión": mismo tamaño que Registrate pero en versión
+   contorno, para que se note cuál es la acción principal. */
+.btn-login {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--white);
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  padding: 8.5px 20px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn-login:hover {
+  color: var(--orange-accent);
+  border-color: var(--orange-accent);
+}
+
+.btn-registrate {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: var(--navy-800);
+  color: var(--white);
+  padding: 10px 22px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-registrate:hover {
+  background: var(--orange-accent);
+  transform: translateY(-1px);
+}
+
+.header-perfil-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  background: var(--navy-800);
+  flex-shrink: 0;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.header-perfil-btn:hover {
+  background: var(--orange-accent);
+}
+
+.header-perfil-btn svg {
+  width: 21px;
+  height: 21px;
+}
+
+.main-nav .nav-item-movil {
+  display: none;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--navy-800);
+  border-radius: 2px;
+}
+
+/* =========================================================
+   SECCIÓN NOSOTROS
+   ========================================================= */
+
+.nosotros-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--navy-900) 0%,
+    var(--navy-800) 55%,
+    var(--navy-700) 100%
+  );
+  padding: 90px 24px;
+}
+
+.circuit-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.circuit-lines path {
+  fill: none;
+  stroke: var(--blue-accent);
+  stroke-width: 2;
+}
+
+.circuit-lines circle {
+  fill: var(--orange-accent);
+}
+
+.nosotros-inner {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nosotros-inner > h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  color: var(--white);
+  margin-bottom: 34px;
+  position: relative;
+  display: inline-block;
+}
+
+.nosotros-inner > h1::after {
+  content: "";
+  position: absolute;
+  left: 2px;
+  bottom: -10px;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--orange-accent), var(--blue-accent));
+  border-radius: 4px;
+}
+
+/* nosotros-flow es el contenedor donde el texto "abraza" el collage:
+   el collage flota a la derecha y el párrafo, al ser texto normal
+   (no flotante), se acomoda solo alrededor de ese hueco. */
+.nosotros-flow::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.nosotros-contenido {
+  color: var(--text-muted);
+  font-size: 1.02rem;
+}
+
+.nosotros-contenido p {
+  margin-bottom: 16px;
+}
+
+/* Collage de fotos, flotando para que el texto lo rodee.
+   Cada foto conserva su propia proporción (una vertical, dos
+   horizontales) en vez de recortarse a cuadrados parejos. */
+.nosotros-collage {
+  float: right;
+  width: 46%;
+  margin: 0 0 20px 40px;
+  shape-outside: margin-box;
+  shape-margin: 20px;
+
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-areas:
+    "vertical superior"
+    "vertical inferior";
+  gap: 18px;
+}
+
+.foto {
+  position: relative;
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.foto-vertical {
+  grid-area: vertical;
+  height: 100%;
+}
+
+.foto-superior {
+  grid-area: superior;
+  aspect-ratio: 679 / 452;
+  transform: translateY(-6px);
+}
+
+.foto-inferior {
+  grid-area: inferior;
+  aspect-ratio: 740 / 493;
+  transform: translateY(6px);
+}
+
+/* =========================================================
+   REGISTRO
+   ========================================================= */
+
+.registro-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--navy-900) 0%,
+    var(--navy-800) 55%,
+    var(--navy-700) 100%
+  );
+  padding: 90px 24px;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registro-card {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 48px 40px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(4, 10, 22, 0.4);
+}
+
+.registro-card h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  color: var(--navy-900);
+  margin-bottom: 8px;
+}
+
+.registro-card > p {
+  color: #6b7280;
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+}
+
+.registro-opciones {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-opcion {
+  flex: 1 1 160px;
+  max-width: 190px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  background: var(--blue-accent);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-opcion:hover {
+  background: var(--orange-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 122, 26, 0.3);
+}
+
+@media (max-width: 480px) {
+  .registro-card {
+    padding: 36px 24px;
+  }
+
+  .registro-opciones {
+    flex-direction: column;
+  }
+
+  .btn-opcion {
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   SERVICIOS / BENEFICIOS
+   ========================================================= */
+
+.servicios-footer-text {
+  grid-column: 1 / -1;
+  text-align: center;
+  max-width: 760px;
+  margin: 20px auto 0;
+  color: #5b6478;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.servicios-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--navy-900) 0%,
+    var(--navy-800) 55%,
+    var(--navy-700) 100%
+  );
+  padding: 80px 24px 70px;
+  text-align: center;
+}
+
+.servicios-hero-inner {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.servicios-hero-inner h1 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  color: var(--white);
+  margin-bottom: 18px;
+  position: relative;
+  display: inline-block;
+}
+
+.servicios-hero-inner h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--orange-accent), var(--blue-accent));
+  border-radius: 4px;
+}
+
+.servicios-hero-inner p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 56ch;
+  margin: 18px auto 0;
+}
+
+.servicios-grid-section {
+  background: #f5f7fb;
+  padding: 70px 24px 90px;
+}
+
+.servicios-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.service-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 34px 28px;
+  border: 1px solid #e6e9f0;
+  box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(8, 18, 38, 0.12);
+  border-color: var(--blue-accent);
+}
+
+.service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--navy-800), var(--blue-accent));
+  color: var(--white);
+  margin: 0 auto 20px;
+}
+
+.service-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.service-card h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--navy-900);
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: #5b6478;
+  font-size: 0.95rem;
+  max-width: 32ch;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .servicios-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+  background: var(--navy-900);
+  color: var(--text-muted);
+}
+
+.footer-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 56px 24px 32px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-logo {
+  height: 38px;
+  margin-bottom: 14px;
+  filter: brightness(0) invert(1);
+}
+
+.footer-brand p {
+  font-size: 0.9rem;
+  max-width: 32ch;
+}
+
+.footer-col h4 {
+  font-family: var(--font-heading);
+  color: var(--white);
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
+
+.footer-col li {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 18px 24px;
+  text-align: center;
+  position: relative;
+  font-size: 0.82rem;
+}
+
+/* Candado discreto (abajo a la izquierda) que lleva al login del panel admin.
+   Casi invisible: solo se nota al pasar el mouse o al enfocarlo con teclado. */
+.footer-admin-lock {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  opacity: 0.18;
+  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.footer-admin-lock:hover,
+.footer-admin-lock:focus-visible {
+  opacity: 1;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.footer-admin-lock svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .nosotros-collage {
+    float: none;
+    width: 100%;
+    margin: 0 0 28px 0;
+    min-height: 320px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    padding-left: 64px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    position: relative;
+    padding: 7px 16px;
+    gap: 12px;
+  }
+
+  .logo-img {
+    height: 64px;
+    width: 64px;
+  }
+
+  /* Igual que en la compu: Iniciar sesión queda a la derecha, junto al
+     botón de menú. "Registrate" pasa a estar dentro del menú desplegable. */
+  .header-auth {
+    margin-left: auto;
+  }
+
+  .btn-registrate {
+    display: none;
+  }
+
+  .btn-login {
+    font-size: 0.82rem;
+    padding: 7px 14px;
+  }
+
+  /* Botón hamburguesa: ahora visible (rayas blancas sobre fondo oscuro) */
+  .nav-toggle {
+    display: flex;
+    flex-shrink: 0;
+    padding: 10px;
+  }
+
+  .nav-toggle span {
+    background: var(--white);
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Menú desplegable con los mismos links que en la compu */
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex: none;
+    flex-direction: column;
+    background: var(--navy-900);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+    padding: 8px 16px 18px;
+  }
+
+  .main-nav.abierto {
+    display: flex;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .main-nav li a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .main-nav a.active::after {
+    display: none;
+  }
+
+  .main-nav .nav-item-movil {
+    display: block;
+    margin-top: 14px;
+  }
+
+  .main-nav .nav-item-movil a {
+    text-align: center;
+    background: var(--orange-accent);
+    border-radius: 8px;
+    border-bottom: none;
+    padding: 12px 20px;
+  }
+}
+
+/* =========================================================
+   MODO OSCURO
+   Truco rápido para tener un modo oscuro funcional sin tener que
+   reescribir cada hoja de estilos con una paleta oscura propia:
+   se invierten los colores de toda la página con un filtro CSS, y
+   después se vuelven a invertir las fotos (<img>) para que no
+   queden con colores raros. No es tan prolijo como armar una
+   paleta oscura variable por variable, pero funciona en todo el
+   sitio ya mismo. El día que quieras algo más afinado, esto se
+   puede reemplazar por variables --bg / --texto que cambien según
+   [data-theme].
+
+   Se activa poniendo data-theme="oscuro" en el <html>, algo que
+   hace el script chiquito que está al principio de cada header
+   (includes/header.php, header_interno.php, header_hogar.php) leyendo
+   localStorage, y que ajustes.php actualiza cuando se toca el switch
+   de "Modo oscuro".
+   ========================================================= */
+
+html[data-theme="oscuro"] {
+  filter: invert(1) hue-rotate(180deg);
+  background: var(--navy-900);
+}
+
+html[data-theme="oscuro"] img,
+html[data-theme="oscuro"] video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* ---------------------------------------------------------
+   INSIGNIA DE CUENTA VERIFICADA (aprobada por el admin)
+   --------------------------------------------------------- */
+
+.insignia-verificada {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  color: var(--blue-accent);
+}
+
+.insignia-verificada svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Empresa: escudo naranja (cliente y técnico llevan el tilde azul) */
+.insignia-verificada--empresa {
+  color: var(--orange-accent);
+}

@@ -1,0 +1,243 @@
+/* ---------------------------------------------------------
+   NOTIFICACIONES (notificaciones.php)
+   Complementa lo que ya está en panel.css: fijadas arriba,
+   estrellita con su formulario y estado "fijada".
+   --------------------------------------------------------- */
+
+/* El formulario de la estrellita no tiene que alterar el layout de la fila */
+.notificacion-favorito-form {
+	display: contents;
+}
+
+.notificacion-favorito {
+	transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.notificacion-favorito:hover {
+	color: #f5b400;
+	transform: scale(1.12);
+}
+
+/* Notificación fijada: marca amarilla a la izquierda, como un destacado */
+.notificacion-fila--fijada {
+	box-shadow: inset 3px 0 0 #f5b400;
+}
+
+/* ---------------------------------------------------------
+   Secciones "Nuevas" / "Leídas"
+   --------------------------------------------------------- */
+.notificaciones-seccion {
+	margin-top: 22px;
+}
+
+.notificaciones-seccion[hidden],
+.notificaciones-vacio[hidden],
+.notificaciones-marcar-leidas[hidden] {
+	display: none;
+}
+
+.notificaciones-seccion-titulo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.notificaciones-seccion-titulo h2 {
+	font-family: var(--font-heading);
+	font-size: 1.05rem;
+	color: var(--navy-900);
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.notificaciones-contador {
+	font-size: 0.75rem;
+	font-weight: 700;
+	background: #e6e9f0;
+	color: var(--navy-800);
+	border-radius: 999px;
+	padding: 2px 9px;
+}
+
+#seccion-nuevas .notificaciones-contador {
+	background: var(--blue-accent);
+	color: var(--white);
+}
+
+.notificaciones-vacio {
+	text-align: center;
+	color: #6b7280;
+	padding: 28px 20px;
+}
+
+/* Las leídas se ven más apagadas que las nuevas */
+#card-leidas .notificacion-fila {
+	opacity: 0.8;
+}
+
+.notificaciones-borrar-todas {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-size: 0.82rem;
+	font-weight: 600;
+	color: #b42318;
+	text-decoration: underline;
+}
+
+.notificaciones-borrar-todas:hover {
+	color: #7a1610;
+}
+
+/* Tachito de cada fila */
+.notificacion-borrar-form {
+	display: contents;
+}
+
+.notificacion-borrar {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: #b6bdcc;
+	flex-shrink: 0;
+	transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.notificacion-borrar svg {
+	width: 20px;
+	height: 20px;
+}
+
+.notificacion-borrar:hover {
+	color: #d92d20;
+	transform: scale(1.12);
+}
+
+@media (max-width: 600px) {
+	.notificacion-fila {
+		gap: 10px;
+		padding: 12px 14px;
+	}
+}
+
+/* El <p> de "no hay nada" no cuenta como última fila: así la última fila no deja línea de más */
+.notificaciones-card .notificacion-fila:last-of-type {
+	border-bottom: none;
+}
+
+/* Sección "Fijadas": va arriba de todo, con el mismo amarillo de la estrellita */
+.notificaciones-seccion--fijadas h2 {
+	color: #8a6400;
+}
+
+.notificaciones-seccion--fijadas .notificaciones-contador {
+	background: #fff3c4;
+	color: #8a6400;
+}
+
+.notificaciones-seccion--fijadas .notificaciones-card {
+	border-color: #f3dc8a;
+	background: #fffdf4;
+}
+
+.notificaciones-aviso {
+	margin-top: 14px;
+	padding: 10px 14px;
+	border-radius: 10px;
+	background: #fff3c4;
+	color: #6b4b00;
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+
+.notificaciones-aviso[hidden] {
+	display: none;
+}
+
+/* ---------------------------------------------------------
+   Detalle de una notificación (?ver=ID), como abrir un mail
+   --------------------------------------------------------- */
+.notificacion-fila {
+	cursor: pointer;
+}
+
+.notificacion-detalle {
+	background: var(--white);
+	border: 1px solid #e6e9f0;
+	border-radius: 14px;
+	box-shadow: 0 6px 18px rgba(8, 18, 38, 0.05);
+	padding: 22px 26px 26px;
+}
+
+.notificacion-detalle-encabezado {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid #eef0f5;
+}
+
+.notificacion-detalle-tipo {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	font-family: var(--font-heading);
+	font-weight: 700;
+	color: var(--navy-900);
+}
+
+.notificacion-detalle-acciones {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.notificacion-detalle-acciones form {
+	display: flex;
+}
+
+.notificacion-detalle-remitente {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin: 20px 0 18px;
+}
+
+.notificacion-avatar--grande {
+	width: 54px;
+	height: 54px;
+}
+
+.notificacion-detalle-meta {
+	color: #6b7280;
+	font-size: 0.82rem;
+	margin-top: 2px;
+}
+
+.notificacion-detalle-texto {
+	font-size: 1.02rem;
+	line-height: 1.6;
+	color: var(--navy-900);
+	white-space: pre-line;
+	overflow-wrap: anywhere;
+}
+
+.notificacion-detalle-pie {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	flex-wrap: wrap;
+	margin-top: 26px;
+	padding-top: 18px;
+	border-top: 1px solid #eef0f5;
+}
+
+.notificacion-detalle-secundario {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--blue-accent);
+	text-decoration: underline;
+}
