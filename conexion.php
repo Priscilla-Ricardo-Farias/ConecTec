@@ -1,9 +1,9 @@
 <?php
 
-$host   = 'localhost';
-$bd     = 'conectec';
-$user   = 'root';
-$clave  = '';   
+$host   = 'example';
+$bd     = 'example';
+$user   = 'example';
+$clave  = 'example';   
 
 $conexion = new mysqli($host, $user, $clave, $bd);
 
